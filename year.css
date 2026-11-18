@@ -1,0 +1,173 @@
+
+/* Hero of year page */
+.hero h1 span {
+  color: var(--accent);
+}
+
+/* the badge uses the animation "pulse" from style.css:
+   it changes background-color, transform and opacity of the same element */
+.hero .badge {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 0.3rem 1.2rem;
+  background-color: var(--accent);
+  color: var(--bg);
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 20px;
+  animation-name: pulse;
+  animation-duration: 2.5s;
+  animation-iteration-count: infinite;
+}
+
+/* Page width for blocks that are not panels */
+#year-page > aside {
+  width: 90%;
+  max-width: 62rem;
+  margin: 3rem auto;
+  padding: 1.5rem 2rem;
+}
+
+/* Updates */
+.update {
+  position: relative;
+  margin-top: 1.5rem;
+  padding: 1.2rem 1.5rem 1.2rem 2.5rem;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--border);
+  border-radius: 8px;
+  transition: transform 0.3s ease-out, background-color 0.8s linear 0.1s, border-left-color 1.2s;
+}
+
+/* every second update has a different background */
+.update:nth-of-type(even) {
+  background-color: var(--bg);
+}
+
+.update:hover {
+  transform: translateX(8px);
+  background-color: var(--bg-panel);
+  border-left-color: var(--accent);
+}
+
+.update-title {
+  color: var(--text);
+}
+
+/* generated content: the label of the date */
+.update-date {
+  margin-bottom: 0.6rem;
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.update-date::before {
+  content: "Released: ";
+  color: var(--text-muted);
+}
+
+
+/* Image of an update */
+.update-figure {
+  float: left;
+  width: 30%;
+  margin: 0 1.5rem 0.8rem 0;
+  text-align: center;
+}
+
+/* responsive image: it fills the figure, whose width is a percentage of the card */
+.update-image {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.update-body > p + p {
+  margin-top: 0.6rem;
+}
+
+.update-caption {
+  margin-top: 0.4rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+
+.update::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+
+/*  Previous / next year */
+.year-nav {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  max-width: 62rem;
+  margin: 3rem auto;
+}
+
+.year-nav a {
+  padding: 0.8rem 1.5rem;
+  background-color: var(--bg-card);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  font-weight: bold;
+  transition: background-color 0.6s linear, border-color 1s, transform 0.3s ease-out;
+}
+
+.year-nav a:hover {
+  background-color: var(--bg-panel);
+  border-color: var(--accent);
+  transform: translateY(-4px);
+}
+
+.year-nav a:first-of-type::before {
+  content: "\2190  ";
+  color: var(--accent);
+}
+
+.year-nav a:last-of-type::after {
+  content: " \2192";
+  color: var(--accent);
+}
+
+/* Accessibility: no animation if the user asks for it  */
+@media (prefers-reduced-motion: reduce) {
+  .hero .badge {
+    animation-name: none;
+  }
+}
+
+/*  Responsive design  */
+@media screen and (max-width: 600px) {
+  #year-page > aside {
+    padding: 1rem;
+  }
+
+  
+  .update-figure {
+    float: none;
+    width: 100%;
+    margin: 0 0 0.8rem 0;
+  }
+
+  .year-nav {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .year-nav a + a {
+    margin-top: 1rem;
+  }
+}

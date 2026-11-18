@@ -1,0 +1,342 @@
+/*  CSS variables*/
+:root {
+  --bg: #0b0f14;
+  --bg-panel: #131a23;
+  --bg-card: #1a2330;
+  --text: #e8edf3;
+  --text-muted: #9aa7b6;
+  --accent: #5fd068;
+  --accent-dark: #3da846;
+  --border: #243040;
+}
+
+/*Custom Font*/
+
+@font-face {
+    font-family: Pricedown;
+    src: url("Pricedown Bl.otf");
+}
+
+
+/* Basics */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Pricedown, Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+p {
+  color: var(--text-muted);
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+}
+
+strong {
+  color: var(--text);
+}
+
+.nav-list > li,
+.dropdown-menu > li,
+.year-grid > li {
+  display: inline-block;
+}
+ 
+
+/* Header + navigation */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 1rem 2rem;
+  background-color: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.brand {
+  font-size: 1.3rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.brand span {
+  color: var(--accent);
+}
+
+/* li elements inside a flex container have no bullets */
+.nav-list {
+  display: flex;
+}
+
+.nav-list > li {
+  margin-left: 1.5rem;
+}
+
+.nav-list > li > a {
+  display: block;
+  padding: 0.5rem 0;
+  color: var(--text-muted);
+  font-weight: 600;
+  border-bottom: 2px solid transparent;
+}
+
+.nav-list > li > a:hover,
+.nav-list > li > a[href="index.html"] {
+  color: var(--text);
+  border-bottom-color: var(--accent);
+}
+
+/*  Drop-down menu */
+.dropdown {
+  position: relative;
+}
+
+.dropdown > a::after {
+  content: " \25BE";
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 14rem;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--accent);
+}
+
+/* the menu opens on hover or when the "Years" link has focus */
+.dropdown:hover .dropdown-menu,
+.dropdown > a:focus + .dropdown-menu {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 0.6rem 1rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.dropdown-menu a:hover {
+  background-color: var(--accent);
+  color: var(--bg);
+}
+
+/*  Hero */
+.hero {
+  text-align: center;
+  padding: 7rem 1.5rem 6rem 1.5rem;
+  background-color: var(--bg-panel);
+  border-bottom: 1px solid var(--border);
+}
+
+.hero h1 {
+  margin-bottom: 1.5rem;
+  font-size: calc(1.8rem + 3vw);
+  line-height: 1.1;
+  text-shadow: 2px 3px 2px var(--accent-dark);
+}
+
+.hero-text {
+  max-width: 40rem;
+  margin: 0 auto 2.5rem auto;
+  font-size: 1.3rem;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: var(--accent);
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    background-color: yellow;
+    transform: scale(1.08) rotate(-2deg);
+    opacity: 0.8;
+  }
+  100% {
+    background-color: var(--accent);
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/*  Panels */
+.panel {
+  width: 90%;
+  max-width: 62rem;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.panel h2 {
+  margin-bottom: 0.5rem;
+  padding-left: 1rem;
+  border-left: 4px solid var(--accent);
+}
+
+.panel h2 + p {
+  margin-bottom: 1.5rem;
+}
+
+/*  About: multicolumn layout */
+.columns {
+  column-count: 2;
+  column-gap: 2.5rem;
+  column-rule: 1px solid var(--border);
+  margin-top: 1.5rem;
+}
+
+.columns p {
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+
+
+aside {
+  margin-top: 1.5rem;
+  padding: 1rem 1.5rem;
+  background-color: var(--bg-card);
+  border-left: 4px solid var(--accent);
+}
+
+aside h3 {
+  color: var(--accent);
+}
+
+/* Year grid + transition */
+.year-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 1rem;
+  row-gap: 1rem;
+}
+
+.year-card {
+  display: block;
+  padding: 1.5rem 0.5rem;
+  text-align: center;
+  background-color: var(--bg-card);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  /* several properties, each with its own duration and delay */
+  transition: transform 0.3s ease-out, background-color 0.8s linear 0.1s, border-color 1.2s, border-radius 1.5s;
+}
+
+.year-card:hover {
+  transform: translateY(-6px) rotate(-2deg);
+  background-color: var(--bg);
+  border-color: var(--accent);
+  border-radius: 40px;
+}
+
+.year-card .year {
+  display: block;
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--accent);
+}
+
+.year-card .label {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/*  Quick facts */
+.facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 1rem;
+  row-gap: 1rem;
+  margin-top: 1rem;
+}
+
+.facts div {
+  padding: 1rem;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.facts dt {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  font-family: Roboto, Helvetica, Arial, sans-serif;;
+}
+
+.facts dd {
+  font-size: 1.15rem;
+  font-weight: bold;
+  font-family: Roboto, Helvetica, Arial, sans-serif;;
+}
+
+/* Footer  */
+.site-footer {
+  padding: 2rem 1.5rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+
+.site-footer p + p {
+  margin-top: 0.4rem;
+}
+
+/*  Responsive design */
+@media screen and (max-width: 900px) {
+  .year-grid,
+  .facts {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .site-header {
+    justify-content: center;
+    padding: 0.8rem 1rem;
+  }
+
+  .nav-list > li {
+    margin: 0 0.6rem;
+  }
+
+  .hero {
+    padding: 4rem 1rem 3.5rem 1rem;
+  }
+
+  .panel {
+    padding: 1.2rem;
+  }
+
+  .columns {
+    column-count: 1;
+  }
+
+  .year-grid,
+  .facts {
+    grid-template-columns: 1fr 1fr;
+  }
+}
